@@ -6,8 +6,8 @@ import sequelize from "./config/database";
 import middleware from "i18next-http-middleware";
 import i18next from "./middleware/i18n.middleware";
 import homeRoutes from "./routes/home.routes";
-import roleRoutes from "./routes/role.routes";
 import { config } from "./config";
+import roleRoutes from "./routes/role.routes";
 
 const app = express();
 const startServer = async () => {
@@ -15,6 +15,7 @@ const startServer = async () => {
         // Ensure i18next is initialized before using it in middleware
         await i18next.init();
         console.log("🌍 i18next initialized successfully");
+
 
         app.use(express.json());
         app.use(cors());

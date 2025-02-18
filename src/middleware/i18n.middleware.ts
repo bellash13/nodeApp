@@ -14,6 +14,7 @@ i18next
   .use(Backend)
   .use(middleware.LanguageDetector)
   .init({
+
     fallbackLng: `${defaultLocale}`, // Default language
     supportedLngs: [defaultLocale, "fr", "es"], // Supported languages
     ns: supportedNamespaces,
