@@ -8,7 +8,8 @@ const database_1 = __importDefault(require("../config/database"));
 class UserRole extends sequelize_1.Model {
 }
 UserRole.init({
-    userId: { type: sequelize_1.DataTypes.INTEGER, allowNull: false },
-    roleId: { type: sequelize_1.DataTypes.INTEGER, allowNull: false },
+    id: { type: sequelize_1.DataTypes.UUID, defaultValue: sequelize_1.DataTypes.UUIDV4, primaryKey: true },
+    userId: { type: sequelize_1.DataTypes.UUID, allowNull: false },
+    roleId: { type: sequelize_1.DataTypes.UUID, allowNull: false },
 }, { sequelize: database_1.default, modelName: "UserRole" });
 exports.default = UserRole;

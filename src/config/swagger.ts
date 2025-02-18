@@ -1,7 +1,7 @@
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import { Express } from "express";
-import { userSwaggerSchema } from "../validation/userValidation";
+import { userSwaggerSchema } from "../validations/user.validation";
 
 const options: swaggerJsdoc.Options = {
   definition: {

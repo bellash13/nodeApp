@@ -13,10 +13,10 @@ interface AuthRequest extends Request {
 export const authenticate = async (req: AuthRequest, res: Response, next: NextFunction) => {
   const token = req.header("Authorization")?.split(" ")[1];
 
-  if (!token) return res.status(401).json({ error: "Access denied" });
+  if (!token) return res.status(401).json({ error: "Access denied!" });
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || "secret") as { id: number };
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || "") as { id: string };
     const user = await User.findByPk(decoded.id, { include: Role });
 
     if (!user) return res.status(401).json({ error: "Invalid token" });

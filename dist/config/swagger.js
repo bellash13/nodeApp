@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.setupSwagger = void 0;
 const swagger_jsdoc_1 = __importDefault(require("swagger-jsdoc"));
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
-const userValidation_1 = require("../validation/userValidation");
+const user_validation_1 = require("../validations/user.validation");
 const options = {
     definition: {
         openapi: "3.0.0",
@@ -17,10 +17,10 @@ const options = {
         },
         components: {
             schemas: {
-                User: userValidation_1.userSwaggerSchema,
+                User: user_validation_1.userSwaggerSchema,
             },
         },
-        servers: [{ url: "http://localhost:3000" }],
+        servers: [{ url: `http://localhost:${process.env.PORT}` }],
     },
     apis: ["./src/routes/*.ts"],
 };

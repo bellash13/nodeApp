@@ -10,6 +10,6 @@ const sequelize = new sequelize_1.Sequelize(process.env.DB_NAME || "crud_db", pr
     host: process.env.DB_HOST || "localhost",
     port: Number(process.env.DB_PORT) || 5432,
     dialect: "postgres",
-    logging: false,
+    logging: process.env.NODE_ENV === "development" ? console.log : false,
 });
 exports.default = sequelize;

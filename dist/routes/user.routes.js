@@ -1,10 +1,11 @@
-import express, { Router } from "express";
-import { login, register } from "../controllers/userController";
-import { userSwaggerSchema } from "../validation/userValidation";
-
-
-const router: Router = express.Router();
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const user_controller_1 = require("../controllers/user.controller");
+const router = express_1.default.Router();
 /**
  * @swagger
  * /auth/register:
@@ -23,8 +24,7 @@ const router: Router = express.Router();
  *       400:
  *         description: Invalid input
  */
-router.post("/register", register);
-
+router.post("/register", user_controller_1.register);
 /**
  * @swagger
  * /auth/login:
@@ -48,6 +48,5 @@ router.post("/register", register);
  *       401:
  *         description: Unauthorized
  */
-router.post("/login", login);
-
-export default router; 
+router.post("/login", user_controller_1.login);
+exports.default = router;

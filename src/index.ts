@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import userRoutes from "./routes/userRoutes";
+import userRoutes from "./routes/user.routes";
 import { setupSwagger } from "./config/swagger";
 import sequelize from "./config/database";
 
@@ -18,7 +18,7 @@ setupSwagger(app);
 app.use("/auth", userRoutes);
 
 // Sync database
-sequelize.sync({ alter: true }).then(() => console.log("Database Synced"));
+sequelize.sync({ alter: true }).then(() => console.log("Database Synced successfully"));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
