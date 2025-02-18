@@ -18,9 +18,10 @@ export const register = async (req: Request, res: Response): Promise<any> => {
     const user = await User.create({ ...req.body, password: hashedPassword });
     const data = { ...user.dataValues, password: undefined };
 
-    res.status(201).json({ message:req.t('success'), data});
+
+    res.status(201).json({data, message: t('success', req)});
   } catch (err) {
-    res.status(500).json({ error: req.t('error.server') });
+    res.status(500).json({ error: t('error.server', req) });
   }
 };
 
