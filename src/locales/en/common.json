@@ -4,5 +4,12 @@
   "error": {
     "server": "Internal server error",
     "not_found": "Resource not found"
+  },
+  "database":{
+    "error": "Database error",
+    "synced": "✅ Database Synced successfully"
+  },
+  "server":{
+    "started": "Server started on port: {0}"
   }
 }

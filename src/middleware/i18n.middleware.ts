@@ -3,13 +3,19 @@ import Backend from "i18next-fs-backend";
 import middleware from "i18next-http-middleware";
 import path from "path";
 
+const defaultLocale = process.env.DEFAULT_LOCALE || "en";
+const supportedNamespaces = require("fs")
+  .readdirSync(path.join(__dirname, "../locales/en"))
+  .filter((file: string) => file.endsWith(".json"))
+  .map((file: string) => file.replace(".json", ""));
+
 i18next
   .use(Backend)
   .use(middleware.LanguageDetector)
   .init({
-    fallbackLng: "en", // Default language
-    supportedLngs: ["en", "fr", "es"], // Supported languages
-    ns: ["auth", "common"], // Namespaces
+    fallbackLng: `${defaultLocale}`, // Default language
+    supportedLngs: [defaultLocale, "fr", "es"], // Supported languages
+    ns: supportedNamespaces,
     defaultNS: "common",
     backend: {
       loadPath: path.join(__dirname, "../locales/{{lng}}/{{ns}}.json"), // Ensure correct path

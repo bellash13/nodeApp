@@ -4,7 +4,6 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { registerValidation } from "../validations/register.validation";
 import { validateAsync } from "../validations/validate";
-import { t } from "../services/t.service";
 
 export const register = async (req: Request, res: Response): Promise<any> => {
   try {
@@ -19,9 +18,9 @@ export const register = async (req: Request, res: Response): Promise<any> => {
     const user = await User.create({ ...req.body, password: hashedPassword });
     const data = { ...user.dataValues, password: undefined };
 
-    res.status(201).json({data, message: t('success', req)});
+    res.status(201).json({ message:req.t('success'), data});
   } catch (err) {
-    res.status(500).json({ error: t('error.server', req) });
+    res.status(500).json({ error: req.t('error.server') });
   }
 };
 

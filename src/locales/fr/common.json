@@ -1,8 +1,15 @@
 {
   "welcome": "Bienvenue sur notre API !",
-  "success": "Opération réussie -common",
+  "success": "Opération réussie",
   "error": {
     "server": "Erreur interne du serveur",
     "not_found": "Ressource non trouvée"
+  },
+  "database": {
+    "error": "Erreur de la base de données",
+    "synced": "✅ Base de données synchronisée avec succès"
+  },
+  "server": {
+    "started": "Serveur démarré sur le port : {0}"
   }
 }
