@@ -20,9 +20,9 @@ export const register = async (req: Request, res: Response): Promise<any> => {
     const data = { ...user.dataValues, password: undefined };
 
 
-    res.status(201).json({data, message: t('success', req)});
+    res.status(201).json({data, message: req.t('success')});
   } catch (err) {
-    res.status(500).json({ error: t('error.server', req) });
+    res.status(500).json({ error: req.t('error.server') });
   }
 };
 
