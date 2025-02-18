@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "tsc --watch & nodemon --exec node --inspect=0.0.0.0:9229 -r ts-node/register --trace-warnings --experimental-specifier-resolution=node src/index.ts",
+    "dev": "nodemon -r ts-node/register --inspect=0.0.0.0:9229 --trace-warnings --experimental-specifier-resolution=node src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js"
   },

@@ -18,7 +18,9 @@ setupSwagger(app);
 app.use("/auth", userRoutes);
 
 // Sync database
-sequelize.sync({ alter: true }).then(() => console.log("Database Synced successfully"));
+sequelize.sync({ alter: true }).then(() => {
+    console.log("Database Synced successfully");
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    const PORT = process.env.PORT || 3030;
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+});
