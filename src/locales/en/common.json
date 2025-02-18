@@ -1,0 +1,8 @@
+{
+  "welcome": "Welcome to our API!",
+  "success": "Operation successful",
+  "error": {
+    "server": "Internal server error",
+    "not_found": "Resource not found"
+  }
+}

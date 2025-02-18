@@ -1,24 +1,27 @@
 import { Request, Response } from "express";
-import User from "../models/User";
+import User from "../models/user.model";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { registerValidation } from "../validations/register.validation";
 import { validateAsync } from "../validations/validate";
+import { t } from "../services/t.service";
 
 export const register = async (req: Request, res: Response): Promise<any> => {
   try {
 
     const errors = await validateAsync(req.body, registerValidation);
 
-    if (errors) {
+    if (errors && errors.length) {
       return res.status(400).json(errors);
     }
+
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const user = await User.create({ ...req.body, password: hashedPassword });
+    const data = { ...user.dataValues, password: undefined };
 
-    res.status(201).json({ ...user, password: undefined });
+    res.status(201).json({data, message: t('success', req)});
   } catch (err) {
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: t('error.server', req) });
   }
 };
 

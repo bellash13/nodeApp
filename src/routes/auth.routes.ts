@@ -1,5 +1,5 @@
 import express, { Router } from "express";
-import { login, register } from "../controllers/user.controller";
+import { login, register } from "../controllers/auth.controller";
 import { userSwaggerSchema } from "../validations/user.validation";
 
 

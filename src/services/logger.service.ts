@@ -1,0 +1,1 @@
+export const logger = (process.env.NODE_ENV !== 'development') ? undefined : console;
