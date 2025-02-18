@@ -2,8 +2,9 @@ import i18next from "i18next";
 import Backend from "i18next-fs-backend";
 import middleware from "i18next-http-middleware";
 import path from "path";
+import { config } from "../config";
 
-const defaultLocale = process.env.DEFAULT_LOCALE || "en";
+const defaultLocale = config.DEFAULT_LOCALE;
 const supportedNamespaces = require("fs")
   .readdirSync(path.join(__dirname, "../locales/en"))
   .filter((file: string) => file.endsWith(".json"))

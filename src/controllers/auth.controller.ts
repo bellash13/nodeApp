@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { registerValidation } from "../validations/register.validation";
 import { validateAsync } from "../validations/validate";
+import { config } from "../config";
 
 export const register = async (req: Request, res: Response): Promise<any> => {
   try {
@@ -38,7 +39,7 @@ export const login = async (req: Request, res: Response): Promise<any> => {
       return res.status(401).json({ error: "Invalid email or password" });
     }
 
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET || "secret", { expiresIn: "1h" });
+    const token = jwt.sign({ id: user.id }, config.JWT_SECRET, { expiresIn: "1h" });
 
     return res.status(200).json({ token });
   } catch (error) {

@@ -5,6 +5,7 @@ import Role from "../models/role.model";
 import UserPermission from "../models/user-permission.model";
 import RolePermission from "../models/role-permission.model";
 import dayjs from "dayjs";
+import { config } from "../config";
 
 interface AuthRequest extends Request {
   user?: any;
@@ -16,7 +17,7 @@ export const authenticate = async (req: AuthRequest, res: Response, next: NextFu
   if (!token) return res.status(401).json({ error: "Access denied!" });
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || "") as { id: string };
+    const decoded = jwt.verify(token, config.JWT_SECRET) as { id: string };
     const user = await User.findByPk(decoded.id, { include: Role });
 
     if (!user) return res.status(401).json({ error: "Invalid token" });

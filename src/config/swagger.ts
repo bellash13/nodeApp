@@ -2,6 +2,7 @@ import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import { Express, Request, Response } from "express";
 import { userSwaggerSchema } from "../validations/user.validation";
+import { config } from ".";
 
 const options: swaggerJsdoc.Options = {
   definition: {
@@ -16,7 +17,7 @@ const options: swaggerJsdoc.Options = {
         User: userSwaggerSchema,
       },
     },
-    servers: [{ url: `http://localhost:${process.env.PORT}` }],
+    servers: [{ url: `http://localhost:${config.PORT}/${config.VERSION}` }],
   },
   apis: ["./src/routes/*.ts"],
 };
@@ -28,5 +29,5 @@ export const setupSwagger = (app: Express) => {
     res.json(swaggerSpec);
   });
   app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-  console.log(`Documentation at http://localhost:${process.env.PORT}`);
+  console.log(`Documentation at http://localhost:${config.PORT}`);
 };

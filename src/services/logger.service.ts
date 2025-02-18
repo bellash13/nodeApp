@@ -1,1 +1,3 @@
-export const logger = (process.env.NODE_ENV !== 'development') ? undefined : console;
+import { config } from "../config";
+
+export const logger = (config.logging) ? undefined : console;
