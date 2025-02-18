@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import User from "../models/User";
-import Role from "../models/Role";
-import UserPermission from "../models/UserPermission";
-import RolePermission from "../models/RolePermission";
+import User from "../models/user.model";
+import Role from "../models/role.model";
+import UserPermission from "../models/user-permission.model";
+import RolePermission from "../models/role-permission.model";
 import dayjs from "dayjs";
 
 interface AuthRequest extends Request {

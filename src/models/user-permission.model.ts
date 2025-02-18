@@ -1,24 +1,24 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database";
-import Role from "./Role";
+import User from "./user.model";
 
-class RolePermission extends Model {
-  public roleId!: number;
+class UserPermission extends Model {
+  public userId!: number;
   public path!: string;
   public method!: string;
   public accessTime!: Date;
 }
 
-RolePermission.init(
+UserPermission.init(
   {
-    roleId: { type: DataTypes.INTEGER, allowNull: false },
+    userId: { type: DataTypes.INTEGER, allowNull: false },
     path: { type: DataTypes.STRING, allowNull: false },
     method: { type: DataTypes.STRING, allowNull: false },
     accessTime: { type: DataTypes.DATE, allowNull: true },
   },
-  { sequelize, modelName: "RolePermission" }
+  { sequelize, modelName: "UserPermission" }
 );
 
-RolePermission.belongsTo(Role, { foreignKey: "roleId" });
+UserPermission.belongsTo(User, { foreignKey: "userId" });
 
-export default RolePermission;
+export default UserPermission;

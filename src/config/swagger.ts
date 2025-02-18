@@ -1,6 +1,6 @@
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
-import { Express } from "express";
+import { Express, Request, Response } from "express";
 import { userSwaggerSchema } from "../validations/user.validation";
 
 const options: swaggerJsdoc.Options = {
@@ -24,6 +24,9 @@ const options: swaggerJsdoc.Options = {
 const swaggerSpec = swaggerJsdoc(options);
 
 export const setupSwagger = (app: Express) => {
-  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.get("/swagger.json", (req: Request, res: Response) => {
+    res.json(swaggerSpec);
+  });
+  app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
   console.log(`Documentation at http://localhost:${process.env.PORT}`);
 };

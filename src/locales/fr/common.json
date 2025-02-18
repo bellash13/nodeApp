@@ -1,0 +1,8 @@
+{
+  "welcome": "Bienvenue sur notre API !",
+  "success": "Opération réussie -common",
+  "error": {
+    "server": "Erreur interne du serveur",
+    "not_found": "Ressource non trouvée"
+  }
+}

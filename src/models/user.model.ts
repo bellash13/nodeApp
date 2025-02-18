@@ -1,8 +1,8 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database";
 import bcrypt from "bcryptjs";
-import Role from "./Role";
-import UserRole from "./UserRole";
+import Role from "./role.model";
+import UserRole from "./user-role.model";
 
 class User extends Model {
   public id!: string;
