@@ -10,7 +10,7 @@ const sequelize = new Sequelize(
  config.DB_PASS || "postgres",
   {
     host:config.DB_HOST || "localhost",
-    port: Number(config.DB_PORT) || 5432,
+    port: config.DB_PORT,
     dialect: "postgres",
     logging:config.NODE_ENV === "development" ? console.log : false,
   }
