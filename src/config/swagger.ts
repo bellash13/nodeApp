@@ -1,8 +1,9 @@
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import { Express, Request, Response } from "express";
-import { userSwaggerSchema } from "../validations/user.validation";
 import { config } from ".";
+import { loginValidation, registerValidation } from "../validations/auth.validation";
+import joiToSwagger from "joi-to-swagger";
 
 const options: swaggerJsdoc.Options = {
   definition: {
@@ -14,7 +15,8 @@ const options: swaggerJsdoc.Options = {
     },
     components: {
       schemas: {
-        User: userSwaggerSchema,
+        Auth_Register: joiToSwagger(registerValidation).swagger,
+        Auth_Login: joiToSwagger(loginValidation).swagger,
       },
     },
     servers: [{ url: `http://localhost:${config.PORT}/${config.VERSION}` }],
@@ -28,6 +30,6 @@ export const setupSwagger = (app: Express) => {
   app.get("/swagger.json", (req: Request, res: Response) => {
     res.json(swaggerSpec);
   });
-  app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerSpec,{explorer: true}));
   console.log(`Documentation at http://localhost:${config.PORT}`);
 };

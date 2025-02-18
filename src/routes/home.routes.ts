@@ -1,9 +1,17 @@
-import express, { Request, Response, Router } from "express";
-import { login, register } from "../controllers/auth.controller";
-import { userSwaggerSchema } from "../validations/user.validation";
+import express, { Request, Response, Router } from "express"; 
 
 
 const router: Router = express.Router();
+/**
+ * @swagger
+ * /:
+ *   get:
+ *     summary: Welcome message
+ *     tags: [Home]
+ *     responses:
+ *       200:
+ *         description: Welcome message
+ */
 router.get("/", (req: Request, res: Response) => {
   res.json({ message: req.t("welcome") });
 });
