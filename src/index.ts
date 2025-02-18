@@ -6,24 +6,39 @@ import { setupSwagger } from "./config/swagger";
 import sequelize from "./config/database";
 import middleware from "i18next-http-middleware";
 import i18next from "./middleware/i18n.middleware";
+import { t } from "./services/t.service";
+import homeRoutes from "./routes/home.routes";
 
 dotenv.config();
 const app = express();
 
-app.use(express.json());
-app.use(cors());
-app.use(middleware.handle(i18next));
+const startServer = async () => {
+    try {
+        // Ensure i18next is initialized before using it in middleware
+        await i18next.init();
+        console.log("🌍 i18next initialized successfully");
 
-// Setup Swagger Documentation
-setupSwagger(app);
+        app.use(express.json());
+        app.use(cors());
+        app.use(middleware.handle(i18next));
 
-// API Routes
-app.use("/auth", authRoutes);
+        // Setup Swagger Documentation
+        setupSwagger(app);
 
-// Sync database
-sequelize.sync({ alter: true }).then(() => {
-    console.log("✅ Database Synced successfully");
+        // API Routes
+        app.use("/auth", homeRoutes);
+        app.use("/auth", authRoutes);
 
-    const PORT = process.env.PORT || 3030;
-    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
-});
+        // Sync database
+        await sequelize.sync({ alter: true });
+        console.log(i18next.t("database.synced"));
+
+        const PORT = process.env.PORT || 3030;
+        app.listen(PORT, () => console.log(`${i18next.t('server.started', { port: PORT })}`));
+    } catch (error) {
+        console.error(`${i18next.t('server.error')}`, error);
+    }
+};
+
+// Start the server
+startServer();

@@ -10,6 +10,7 @@
     "synced": "✅ Database Synced successfully"
   },
   "server":{
-    "started": "Server started on port: {0}"
+    "started": "🚀 Server started on port: {{port}}",
+    "error":"❌ Error starting the server:"
   }
 }

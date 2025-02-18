@@ -10,6 +10,7 @@
     "synced": "✅ Base de datos sincronizada con éxito"
   },
   "server": {
-    "started": "Servidor iniciado en el puerto: {0}"
+    "started": "🚀 Servidor iniciado en el puerto: {{port}}",
+    "error": "❌ Error al iniciar el servidor"
   }
 }
